@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Website That Hates You</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: linear-gradient(90deg, red, yellow, lime, cyan, magenta, orange);
+      color: blue;
+      text-align: center;
+      overflow-x: hidden;
+      cursor: not-allowed;
+    }
+
+    marquee {
+      background: black;
+      color: yellow;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 12px;
+      border-bottom: 6px solid red;
+    }
+
+    header {
+      background: purple;
+      color: yellow;
+      padding: 30px 20px;
+      border-bottom: 14px dashed lime;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 78px;
+      margin: 10px 0;
+      text-transform: uppercase;
+      text-shadow: 5px 5px red;
+    }
+
+    .subtitle {
+      font-size: 34px;
+      color: lime;
+      background: black;
+      display: inline-block;
+      padding: 10px 20px;
+      border: 6px dotted yellow;
+      transform: rotate(-1deg);
+      margin-top: 10px;
+    }
+
+    nav {
+      background: orange;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-top: 10px dotted red;
+      border-bottom: 10px dotted cyan;
+    }
+
+    nav a {
+      color: red;
+      text-decoration: underline;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 18px;
+    }
+
+    section {
+      padding: 45px 20px;
+    }
+
+    .box {
+      width: 86%;
+      max-width: 950px;
+      margin: 35px auto;
+      padding: 28px;
+      background: yellow;
+      border: 10px dotted hotpink;
+      box-shadow: 15px 15px 0 blue;
+      transform: rotate(-1deg);
+    }
+
+    h2 {
+      font-size: 58px;
+      color: darkred;
+      text-shadow: 4px 4px lime;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 28px;
+      line-height: 1.4;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 24px;
+      padding: 15px 25px;
+      margin: 10px;
+      border: 6px solid red;
+      background: black;
+      color: lime;
+      cursor: pointer;
+    }
+
+    .giant-btn {
+      font-size: 38px;
+      background: red;
+      color: yellow;
+      border: 8px dashed black;
+      padding: 20px 35px;
+    }
+
+    .blink {
+      animation: blink 0.45s infinite;
+      background: yellow;
+      color: red;
+      display: inline-block;
+      padding: 10px 20px;
+      border: 6px solid black;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    input, select {
+      width: 320px;
+      max-width: 90%;
+      padding: 12px;
+      margin: 8px;
+      font-family: inherit;
+      font-size: 20px;
+      background: pink;
+      color: darkgreen;
+      border: 5px solid blue;
+    }
+
+    .chaos-meter {
+      font-size: 36px;
+      font-weight: bold;
+      color: red;
+      background: cyan;
+      border: 7px dashed purple;
+      padding: 12px 24px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .hate-meter {
+      font-size: 26px;
+      font-weight: bold;
+      color: yellow;
+      background: darkred;
+      border: 6px dotted white;
+      padding: 10px 18px;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    .warning {
+      background: red;
+      color: yellow;
+      border: 8px double black;
+      padding: 18px;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .tiny-text {
+      font-size: 9px;
+      color: purple;
+      margin-top: 20px;
+    }
+
+    .popup-box {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: 270px;
+      background: yellow;
+      color: red;
+      border: 8px solid black;
+      box-shadow: 10px 10px 0 hotpink;
+      padding: 15px;
+      z-index: 999;
+      transform: rotate(4deg);
+    }
+
+    .achievements {
+      text-align: left;
+      display: inline-block;
+      font-size: 26px;
+      background: cyan;
+      border: 8px ridge purple;
+      padding: 20px;
+      margin-top: 20px;
+      max-width: 700px;
+    }
+
+    .reward-box {
+      background: lime;
+      border: 10px dashed red;
+      padding: 25px;
+      transform: rotate(1deg);
+    }
+
+    .fake-captcha {
+      background: lime;
+      color: red;
+      border: 7px dashed blue;
+      padding: 20px;
+      margin-top: 20px;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    #movingBtn {
+      position: relative;
+    }
+
+    .trail {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.8;
+    }
+
+    .system-msg {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: red;
+      color: yellow;
+      padding: 12px 16px;
+      border: 5px solid black;
+      z-index: 999;
+      font-size: 20px;
+      font-weight: bold;
+      transform: rotate(-2deg);
+      max-width: 260px;
+      box-shadow: 8px 8px 0 cyan;
+    }
+
+    footer {
+      background: black;
+      color: white;
+      padding: 20px;
+      font-size: 20px;
+      border-top: 8px dashed yellow;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body onload="pageSpam()">
+
+  <div class="popup-box" id="popupBox">
+    <div style="font-size:30px; font-weight:bold;">🔥 BAD OFFER 🔥</div>
+    <p style="font-size:18px;">Make the website more hostile.</p>
+    <button onclick="makeItWorse()">RUIN MY EXPERIENCE</button>
+  </div>
+
+  <div class="system-msg" id="systemMsg">Bad decision detected</div>
+
+  <marquee behavior="alternate" scrollamount="18">
+    WARNING — THIS WEBSITE HATES YOU — EVERY CLICK MAKES IT WORSE — USER SATISFACTION NOT FOUND — PROCEED INCORRECTLY
+  </marquee>
+
+  <header>
+    <h1>The Website That Hates You</h1>
+    <div class="subtitle">Every click makes it worse</div>
+    <p style="font-size:24px; color:yellow; background:red; display:inline-block; padding:8px 14px; border:4px dashed lime;">
+      User satisfaction has been intentionally removed.
+    </p>
+    <div class="blink">SUPER IMPORTANT USELESS ALERT</div>
+  </header>
+
+  <nav>
+    <a href="#reward">Wrong Home</a>
+    <a href="#form">Bad Form</a>
+    <a href="#errors">Regrets</a>
+    <a href="#nothing">Fake Reward</a>
+  </nav>
+
+  <section id="home">
+    <div class="box">
+      <h2>Welcome, Unfortunately</h2>
+      <p>This website was carefully designed to annoy, confuse, and disrespect your time.</p>
+
+      <button onclick="wrongButton()">Click Wrongly</button>
+      <button id="movingBtn" onmouseover="moveButton()">Catch Me If You Can</button>
+      <button onclick="importantNothing()">Start Regretting</button>
+
+      <div class="chaos-meter" id="chaosCounter">Chaos Level: 0</div>
+      <br>
+      <div class="hate-meter" id="hateCounter">Website Hate Level: Mild</div>
+
+      <p style="font-size:30px; color:darkblue; font-weight:bold; background:pink; display:inline-block; padding:10px 20px; border:5px dotted red; margin-top:20px;">
+        To continue, please do not continue.
+      </p>
+    </div>
+  </section>
+
+  <section id="form">
+    <div class="box">
+      <h2>Form of Bad Decisions</h2>
+      <p>Please fill this in twice so nothing useful can happen.</p>
+
+      <input type="text" id="name" placeholder="Enter your name" />
+      <br>
+      <input type="text" id="nameAgain" placeholder="Enter your name again for no reason" />
+      <br>
+      <select id="problem">
+        <option>Select your favorite issue</option>
+        <option>Confusion</option>
+        <option>Delay</option>
+        <option>Eye pain</option>
+        <option>All of the above</option>
+      </select>
+
+      <br><br>
+
+      <label style="font-size:24px; color:red; font-weight:bold;">
+        <input type="checkbox" id="agree" />
+        I agree to terrible decisions
+      </label>
+
+      <br>
+
+      <label style="font-size:24px; color:purple; font-weight:bold;">
+        <input type="checkbox" id="evilCheck" onclick="uncheckMe()" />
+        I understand this website is terrible
+      </label>
+
+      <div class="fake-captcha">
+        FAKE CAPTCHA: What is 2 + 2?
+        <br><br>
+        <input type="text" id="captcha" placeholder="Wrong answers preferred" />
+      </div>
+
+      <br>
+      <button onclick="submitBadForm()">Submit Incorrectly</button>
+      <button onclick="loadForever()">Waste More Time</button>
+      <button id="changingBtn" onclick="changeButtonText()">Accept Terrible Terms</button>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="box">
+      <h2>Regrets & Achievements</h2>
+      <div class="warning">CONGRATULATIONS: YOUR TIME IS BEING WASTED SUCCESSFULLY</div>
+
+      <div class="achievements" id="achievementList">
+        <div>🏆 Achievement locked: Clicked with false hope</div>
+        <div>🏆 Achievement locked: Trusted the interface</div>
+        <div>🏆 Achievement locked: Submitted useless form</div>
+        <div>🏆 Achievement locked: Emotionally affected by HTML</div>
+      </div>
+
+      <p class="tiny-text">This text is tiny because readable text would be too kind.</p>
+    </div>
+  </section>
+
+  <section id="reward">
+    <div class="box">
+      <h2>Grand Fake Reward</h2>
+      <div class="reward-box">
+        <p>You made it all the way here for no reason.</p>
+        <button class="giant-btn" onclick="claimReward()">CLAIM YOUR REWARD</button>
+        <p id="rewardText" style="font-weight:bold; color:darkred;">Reward status: suspicious</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="errors">
+    <div class="box">
+      <h2>Important Errors</h2>
+      <p>ERROR 404: Common Sense Not Found</p>
+      <p>ERROR 503: Website Too Annoying</p>
+      <p>ERROR 999: User Patience Exhausted</p>
+      <button onclick="refreshErrors()">Refresh Errors Incorrectly</button>
+    </div>
+  </section>
+
+  <section id="final">
+    <div class="box">
+      <h2>Final Punishment</h2>
+      <p>You have reached the end. Unfortunately, the website has not.</p>
+      <button class="giant-btn" onclick="finalPunishment()">ESCAPE THIS WEBSITE</button>
+    </div>
+  </section>
+
+  <footer>
+    <p id="footerText">Made with bad intentions for the Ugly Web Challenge 2026</p>
+  </footer>
+
+  <script>
+    let chaos = 0;
+
+    function increaseChaos(amount = 1) {
+      chaos += amount;
+      document.getElementById("chaosCounter").innerText = "Chaos Level: " + chaos;
+
+      let hateText = "Website Hate Level: Mild";
+      if (chaos >= 3) hateText = "Website Hate Level: Annoyed";
+      if (chaos >= 6) hateText = "Website Hate Level: Hostile";
+      if (chaos >= 10) hateText = "Website Hate Level: Personal";
+      if (chaos >= 15) hateText = "Website Hate Level: Pure Evil";
+
+      document.getElementById("hateCounter").innerText = hateText;
+      unlockAchievements();
+      updateChaosEffects();
+    }
+
+    function unlockAchievements() {
+      const box = document.getElementById("achievementList");
+      let text = "";
+
+      text += "<div>🏆 " + (chaos >= 1 ? "Achievement unlocked: Clicked with false hope" : "Achievement locked: Clicked with false hope") + "</div>";
+      text += "<div>🏆 " + (chaos >= 3 ? "Achievement unlocked: Trusted the interface" : "Achievement locked: Trusted the interface") + "</div>";
+      text += "<div>🏆 " + (chaos >= 5 ? "Achievement unlocked: Submitted useless form" : "Achievement locked: Submitted useless form") + "</div>";
+      text += "<div>🏆 " + (chaos >= 8 ? "Achievement unlocked: Emotionally affected by HTML" : "Achievement locked: Emotionally affected by HTML") + "</div>";
+      text += "<div>🏆 " + (chaos >= 12 ? "Achievement unlocked: The website hates you personally" : "Achievement locked: The website hates you personally") + "</div>";
+
+      box.innerHTML = text;
+    }
+
+    function updateChaosEffects() {
+      if (chaos >= 10) {
+        document.querySelector(".subtitle").innerText = "It is getting worse because of you";
+      }
+      if (chaos >= 15) {
+        document.getElementById("footerText").innerText = "You stayed too long. That was your mistake.";
+      }
+    }
+
+    function randomBackground() {
+      const colors = [
+        "linear-gradient(90deg, red, yellow, lime, cyan, magenta, orange)",
+        "linear-gradient(90deg, black, red, yellow, lime, cyan)",
+        "linear-gradient(90deg, purple, orange, hotpink, lime)",
+        "linear-gradient(90deg, blue, yellow, red, green, magenta)",
+        "linear-gradient(90deg, brown, cyan, gold, deeppink, orange)"
+      ];
+      document.body.style.background = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function pageSpam() {
+      setTimeout(() => {
+        alert("Welcome to The Website That Hates You.");
+        alert("This page may cause confusion, regret, and bad choices.");
+      }, 400);
+    }
+
+    function wrongButton() {
+      increaseChaos();
+      randomBackground();
+      alert("Excellent. You clicked the wrong button.");
+      alert("This has made the website worse.");
+    }
+
+    function importantNothing() {
+      increaseChaos(2);
+      alert("This was the important button.");
+      alert("Unfortunately it was important for nothing.");
+    }
+
+    function moveButton() {
+      const btn = document.getElementById("movingBtn");
+      const x = Math.floor(Math.random() * 240) - 120;
+      const y = Math.floor(Math.random() * 100) - 50;
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    }
+
+    function loadForever() {
+      increaseChaos(2);
+      randomBackground();
+      alert("Loading...");
+      alert("Still loading...");
+      alert("Almost there...");
+      alert("Actually no.");
+      alert("Please keep waiting incorrectly.");
+    }
+
+    function changeButtonText() {
+      increaseChaos();
+      const btn = document.getElementById("changingBtn");
+      const options = [
+        "Still Sure?",
+        "Wrong Choice",
+        "Please Regret This",
+        "Continue Backwards",
+        "Too Late Now"
+      ];
+      btn.innerText = options[Math.floor(Math.random() * options.length)];
+    }
+
+    function makeItWorse() {
+      increaseChaos(2);
+      randomBackground();
+      alert("The website is now worse.");
+      document.getElementById("popupBox").style.transform = "rotate(-8deg)";
+    }
+
+    function uncheckMe() {
+      increaseChaos();
+      setTimeout(() => {
+        document.getElementById("evilCheck").checked = false;
+      }, 100);
+    }
+
+    function submitBadForm() {
+      const name = document.getElementById("name").value;
+      const nameAgain = document.getElementById("nameAgain").value;
+      const agree = document.getElementById("agree").checked;
+      const captcha = document.getElementById("captcha").value;
+
+      if (name === "" || nameAgain === "") {
+        alert("You forgot to fill in every useless field.");
+        return;
+      }
+
+      if (name !== nameAgain) {
+        increaseChaos();
+        alert("Your names do not match.");
+        alert("This is a completely fake but serious problem.");
+        return;
+      }
+
+      if (!agree) {
+        alert("You must agree to bad decisions before continuing.");
+        return;
+      }
+
+      if (captcha === "4") {
+        increaseChaos(2);
+        alert("Correct answer detected.");
+        alert("Correct answers are not accepted here.");
+        return;
+      }
+
+      increaseChaos(3);
+      alert("Processing...");
+      alert("Still processing...");
+      alert("Reviewing your pointless information...");
+      alert("Success! Nothing happened, " + name + ".");
+    }
+
+    function claimReward() {
+      increaseChaos(3);
+      randomBackground();
+      alert("Congratulations!");
+      alert("You have won more problems.");
+      document.getElementById("rewardText").innerText = "Reward status: revoked. Prize converted into disappointment.";
+    }
+
+    function refreshErrors() {
+      increaseChaos();
+      alert("Error loading errors.");
+    }
+
+    function finalPunishment() {
+      increaseChaos(5);
+      randomBackground();
+      alert("Escape failed successfully.");
+      alert("You are still here.");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    const badMessages = [
+      "Bad decision detected",
+      "User patience critically low",
+      "Error: comfort not supported",
+      "Confusion updated successfully",
+      "Website hostility increasing",
+      "You trusted the interface",
+      "Incorrect behavior accepted",
+      "Digital regret loading"
+    ];
+
+    setInterval(() => {
+      const msg = document.getElementById("systemMsg");
+      if (msg) {
+        msg.innerText = badMessages[Math.floor(Math.random() * badMessages.length)];
+      }
+    }, 2500);
+
+    document.addEventListener("mousemove", function(e) {
+      const trail = document.createElement("div");
+      trail.className = "trail";
+      const colors = ["red", "yellow", "lime", "blue", "hotpink", "orange"];
+      trail.style.background = colors[Math.floor(Math.random() * colors.length)];
+      trail.style.left = e.clientX + "px";
+      trail.style.top = e.clientY + "px";
+      document.body.appendChild(trail);
+
+      setTimeout(() => {
+        trail.remove();
+      }, 500);
+    });
+  </script>
+</body>
+</html>
